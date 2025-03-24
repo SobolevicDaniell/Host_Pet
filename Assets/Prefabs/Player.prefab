@@ -148,8 +148,9 @@ GameObject:
   - component: {fileID: 7800890038986134941}
   - component: {fileID: 4170993320133185139}
   - component: {fileID: 7423499015253041474}
-  - component: {fileID: 949384966120954310}
-  - component: {fileID: 3495670440976071718}
+  - component: {fileID: 2236805054777748466}
+  - component: {fileID: 5771969081924420589}
+  - component: {fileID: 8608163651131022218}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -211,9 +212,23 @@ MonoBehaviour:
   Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: 3495670440976071718}
+  - {fileID: 2236805054777748466}
+  - {fileID: 8608163651131022218}
   ForceRemoteRenderTimeframe: 0
---- !u!143 &949384966120954310
+--- !u!114 &2236805054777748466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6320505521719813553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebddaa156b2e6e547a91b7c04ce4098b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 5
+--- !u!143 &5771969081924420589
 CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -239,7 +254,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3495670440976071718
+--- !u!114 &8608163651131022218
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -252,7 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stateAuthorityChangeErrorCorrectionDelta: 0
-  gravity: -20
+  gravity: -9.81
   jumpImpulse: 8
   acceleration: 10
   braking: 10

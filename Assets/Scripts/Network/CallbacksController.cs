@@ -45,7 +45,26 @@ namespace Game
         public void OnDisconnectedFromServer(NetworkRunner runner) { }
         public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason) { }
         public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason) { }
-        public void OnInput(NetworkRunner runner, NetworkInput input) { }
+        public void OnInput(NetworkRunner runner, NetworkInput input)
+        {
+            //var inputData = new InputData
+            //{
+            //    horizontal = Input.GetAxis("Horizontal"),
+            //    vertical = Input.GetAxis("Vertical"),
+            //    Jump = Input.GetKey(KeyCode.Space)
+            //};
+
+            //input.Set(inputData);
+            //Debug.Log($"Input sent: H={inputData.horizontal}, V={inputData.vertical}, Jump={inputData.Jump}");
+
+
+            var inputData = new InputData();
+
+            inputData.movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            inputData.buttons.Set(0, Input.GetKeyDown(KeyCode.Space));
+            input.Set(inputData);
+        } 
+
         public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList) { }
         public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data) { }
         public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken) { }

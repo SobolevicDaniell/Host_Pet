@@ -22,7 +22,8 @@ namespace Game
 
             _systems
                 .Add(new PlayerSpawnSystem(_world, runner, _playerPrefab))
-                .Add(new PlayerLeftSystem(_world, runner));
+                .Add(new PlayerLeftSystem(_world, runner))
+                .Add(new ServerInputSystem(runner));
 
             _systems.Init();
         }
