@@ -18,14 +18,13 @@ namespace Game
 
         public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
         {
-            Debug.Log("Player joined: " + player.PlayerId);
-
             if (_world != null)
             {
                 EcsEntity entity = _world.NewEntity();
                 ref var spawnEvent = ref entity.Get<PlayerSpawnEvent>();
                 spawnEvent.playerRef = player;
                 spawnEvent.isSpawned = false;
+                Debug.Log("Player joined: " + player.PlayerId);
             }
         }
 
@@ -47,17 +46,6 @@ namespace Game
         public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason) { }
         public void OnInput(NetworkRunner runner, NetworkInput input)
         {
-            //var inputData = new InputData
-            //{
-            //    horizontal = Input.GetAxis("Horizontal"),
-            //    vertical = Input.GetAxis("Vertical"),
-            //    Jump = Input.GetKey(KeyCode.Space)
-            //};
-
-            //input.Set(inputData);
-            //Debug.Log($"Input sent: H={inputData.horizontal}, V={inputData.vertical}, Jump={inputData.Jump}");
-
-
             var inputData = new InputData();
 
             inputData.movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));

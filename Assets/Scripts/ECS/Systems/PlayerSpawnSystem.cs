@@ -1,4 +1,3 @@
-using ExitGames.Client.Photon.StructWrapping;
 using Fusion;
 using Leopotam.Ecs;
 using UnityEngine;
@@ -46,6 +45,12 @@ namespace Game
             NetworkObject playerObject = _runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player);
 
             _runner.SetPlayerObject(player, playerObject);
+            PlayerController controller = playerObject.GetComponent<PlayerController>();
+            if (controller != null)
+            {
+                controller.playerRef = player;
+            }
+
 
             var entity = _world.NewEntity();
             ref var playerComponent = ref entity.Get<PlayerComponent>();
