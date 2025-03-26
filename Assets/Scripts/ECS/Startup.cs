@@ -10,7 +10,7 @@ namespace Game
         public EcsWorld world => _world;
         private EcsSystems _systems;
 
-        [SerializeField] private GameObject _playerPrefab;
+        [SerializeField] private PlayerSO _playerSO;
 
         private void Start()
         {
@@ -21,9 +21,8 @@ namespace Game
             NetworkRunner runner = fusionStartup?.runner;
 
             _systems
-                .Add(new PlayerSpawnSystem(_world, runner, _playerPrefab))
+                .Add(new PlayerSpawnSystem(_world, runner, _playerSO))
                 .Add(new PlayerLeftSystem(_world, runner))
-                //.Add(new ServerInputSystem(runner))
                 .Add(new UpdatePositionSystem(_world, runner))
                 .Add(new DebugSystem(runner));
 

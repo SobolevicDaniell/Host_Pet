@@ -47,7 +47,6 @@ namespace Game
                         _eventFilter.GetEntity(i).Destroy();
                     }
                 }
-                
             }
         }  
     }

@@ -8,15 +8,17 @@ namespace Game
     {
         private readonly EcsWorld _world;
         private readonly NetworkRunner _runner;
-        private readonly GameObject _playerPrefab;
+
+        private readonly PlayerSO _playerSO;
+
 
         private readonly EcsFilter<PlayerSpawnEvent> playerSpawnEventFilter = null;
 
-        public PlayerSpawnSystem(EcsWorld world, NetworkRunner runner, GameObject playerPrefab)
+        public PlayerSpawnSystem(EcsWorld world, NetworkRunner runner, PlayerSO playerSO)
         {
             _world = world;
             _runner = runner;
-            _playerPrefab = playerPrefab;
+            _playerSO = playerSO;
         }
 
         public void Run()
@@ -40,17 +42,12 @@ namespace Game
         {
             Vector3 spawnPosition = new Vector3(0, 0, 0 + player.PlayerId * 2);
 
-            Debug.Log($"Spawning player {player.PlayerId} at position {spawnPosition}");
+            //Debug.Log($"Spawning player {player.PlayerId} at position {spawnPosition}");
 
-            NetworkObject playerObject = _runner.Spawn(_playerPrefab, spawnPosition, Quaternion.identity, player);
+            NetworkObject playerObject = _runner.Spawn(_playerSO.PlayerPrefab, spawnPosition, Quaternion.identity, player);
 
             _runner.SetPlayerObject(player, playerObject);
             PlayerController controller = playerObject.GetComponent<PlayerController>();
-            if (controller != null)
-            {
-                controller.playerRef = player;
-            }
-
 
             var entity = _world.NewEntity();
             ref var playerComponent = ref entity.Get<PlayerComponent>();
@@ -58,6 +55,5 @@ namespace Game
             playerComponent.position = spawnPosition;
             playerComponent.playerGameObject = playerObject.gameObject;
         }
-
     }
 }

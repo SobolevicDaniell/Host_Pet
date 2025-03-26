@@ -12,8 +12,10 @@ namespace Game
 
         private void Start()
         {
-            Startup _startup = FindObjectOfType<Startup>();
-            _world = _startup.world;
+            Startup startup = FindObjectOfType<Startup>();
+            _world = startup.world;
+
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
@@ -40,18 +42,17 @@ namespace Game
             }
         }
 
-        public void OnConnectedToServer(NetworkRunner runner) { }
-        public void OnDisconnectedFromServer(NetworkRunner runner) { }
-        public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason) { }
-        public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason) { }
         public void OnInput(NetworkRunner runner, NetworkInput input)
         {
-            var inputData = new InputData();
+            var inputData = new InputData
+            {
+                movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")), // WASD
+                mouseX = Input.GetAxis("Mouse X"), // Горизонтальное движение мыши
+                mouseY = Input.GetAxis("Mouse Y")  // Вертикальное движение мыши
+            };
 
-            inputData.movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            inputData.buttons.Set(0, Input.GetKeyDown(KeyCode.Space));
             input.Set(inputData);
-        } 
+        }
 
         public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList) { }
         public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data) { }
@@ -66,5 +67,9 @@ namespace Game
         public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
         public void OnSceneLoadDone(NetworkRunner runner) { }
         public void OnSceneLoadStart(NetworkRunner runner) { }
+        public void OnConnectedToServer(NetworkRunner runner) { }
+        public void OnDisconnectedFromServer(NetworkRunner runner) { }
+        public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason) { }
+        public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason) { }
     }
 }
