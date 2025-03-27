@@ -46,9 +46,10 @@ namespace Game
         {
             var inputData = new InputData
             {
-                movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")), // WASD
-                mouseX = Input.GetAxis("Mouse X"), // Горизонтальное движение мыши
-                mouseY = Input.GetAxis("Mouse Y")  // Вертикальное движение мыши
+                movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")),
+                mouseX = Input.GetAxis("Mouse X"),
+                mouseY = Input.GetAxis("Mouse Y"),
+                jump = Input.GetKey(KeyCode.Space)
             };
 
             input.Set(inputData);

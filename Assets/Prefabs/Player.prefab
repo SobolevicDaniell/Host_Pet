@@ -184,6 +184,8 @@ GameObject:
   - component: {fileID: 5771969081924420589}
   - component: {fileID: 8608163651131022218}
   - component: {fileID: 8120402437622617624}
+  - component: {fileID: 8285421083921590084}
+  - component: {fileID: 2294262735288720655}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -248,6 +250,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 2236805054777748466}
   - {fileID: 8608163651131022218}
+  - {fileID: 2294262735288720655}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &2236805054777748466
 MonoBehaviour:
@@ -261,9 +264,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebddaa156b2e6e547a91b7c04ce4098b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerSO: {fileID: 11400000, guid: c12c3d9405ba92d49a1da61c63f51725, type: 2}
   _playerCamera: {fileID: 1007609235651195975}
   _cameraHolder: {fileID: 8777482700928805721}
+  _playerSO: {fileID: 11400000, guid: c12c3d9405ba92d49a1da61c63f51725, type: 2}
 --- !u!143 &5771969081924420589
 CharacterController:
   m_ObjectHideFlags: 0
@@ -322,6 +325,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 1007609235651195975}
+--- !u!95 &8285421083921590084
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6320505521719813553}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8161adababd21f64f993e6a9c1c33f70, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2294262735288720655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6320505521719813553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 506319458, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 8285421083921590084}
+  ApplyTiming: 2
+  SyncSettings: 79
+  StateHashes: 000000002b1a167c79406955
+  TriggerHashes: 00000000
+  TotalWords: 0
 --- !u!1 &8645095246279586561
 GameObject:
   m_ObjectHideFlags: 0

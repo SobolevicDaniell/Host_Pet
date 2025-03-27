@@ -13,6 +13,8 @@ public class PlayerController : NetworkBehaviour
     private EcsWorld _world;
 
     private float _cameraPitch = 0f;
+    private float _verticalVelocity = 0f;
+    private bool _isGrounded;
 
     public PlayerRef playerRef;
 
@@ -36,6 +38,7 @@ public class PlayerController : NetworkBehaviour
             ProcessMouseLook(input);
             ProcessMovement(input);
             UpdatePositionComponent();
+            ProcessJump(input);
         }
     }
 
@@ -50,10 +53,30 @@ public class PlayerController : NetworkBehaviour
 
     private void ProcessMovement(InputData input)
     {
+        _isGrounded = _characterController.isGrounded;
+
         Vector3 direction = new Vector3(input.movement.x, 0, input.movement.y);
         direction = transform.TransformDirection(direction);
 
         _characterController.Move(direction * _playerSO.PlayerSpeed * Runner.DeltaTime);
+    }
+    private void ProcessJump(InputData input)
+    {
+        if (_isGrounded)
+        {
+            _verticalVelocity = -1f;
+
+            if (input.jump)
+            {
+                _verticalVelocity = Mathf.Sqrt(2f * _playerSO.JumpHeight * _playerSO.Gravity);
+            }
+        }
+        else
+        {
+            _verticalVelocity -= _playerSO.Gravity * Runner.DeltaTime;
+        }
+
+        _characterController.Move(Vector3.up * _verticalVelocity * Runner.DeltaTime);
     }
 
     private void UpdatePositionComponent()
