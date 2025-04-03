@@ -11,6 +11,7 @@ namespace Game
         private EcsSystems _systems;
 
         [SerializeField] private PlayerSO _playerSO;
+        //[SerializeField] private PanelManager _panelManager;
 
         private void Start()
         {
@@ -24,7 +25,8 @@ namespace Game
                 .Add(new PlayerSpawnSystem(_world, runner, _playerSO))
                 .Add(new PlayerLeftSystem(_world, runner))
                 .Add(new UpdatePositionSystem(_world, runner))
-                .Add(new DebugSystem(runner));
+                .Add(new DebugSystem(runner))
+                ;
 
             _systems.Init();
         }

@@ -16,5 +16,5 @@ MonoBehaviour:
   jumpVelocity: 10
   playerPrefab: {fileID: 6320505521719813553, guid: 014da4e62c3a31d4abc82687d31aba68, type: 3}
   mouseSensitivity: 2
-  gravity: 10
-  jumpHeight: 10
+  gravity: 9.81
+  jumpHeight: 5

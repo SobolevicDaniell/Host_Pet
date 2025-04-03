@@ -9,6 +9,8 @@ namespace Game
     public class CallbacksController : MonoBehaviour, INetworkRunnerCallbacks
     {
         private EcsWorld _world;
+        [SerializeField] private List<ItemUI> _itemSlots;
+        //private int _currentSlotIndex = 0;
 
         private void Start()
         {
@@ -54,6 +56,7 @@ namespace Game
 
             input.Set(inputData);
         }
+        
 
         public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList) { }
         public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data) { }
